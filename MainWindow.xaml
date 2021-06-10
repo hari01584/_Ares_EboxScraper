@@ -1,0 +1,47 @@
+﻿<Window x:Class="Ares.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="True"
+        xmlns:local="clr-namespace:Ares"
+        mc:Ignorable="d"
+        Icon="icon1.ico"
+        Title="Ares: Advanced Runtime Ebox Sniffer" Height="793.2" Width="489.821">
+    <ui:SimpleStackPanel x:Name="Head" Margin="8,8,8,8" Spacing="20" >
+        <TextBlock Text="Ares Ebox Scraper" Style="{StaticResource HeaderTextBlockStyle}" 
+                   FontFamily="Kristen ITC" FontWeight="Bold" HorizontalAlignment="Center" FontSize="40"/>
+
+        <TextBlock Text="Tool Made By MrViolet (Pen Name)" Style="{StaticResource HeaderTextBlockStyle}" 
+                   FontFamily="Agency FB" FontWeight="light" HorizontalAlignment="Center"  Margin="104,-19.4,94.2,-1.6"  FontSize="18"/>
+
+        <TextBlock Text="Logs" Style="{StaticResource HeaderTextBlockStyle}" 
+                   FontFamily="sans" FontWeight="Bold" HorizontalAlignment="Center"  Margin="24,-10.4,24,-10.4"  FontSize="20"/>
+        <TextBox x:Name="TextBoxRequest" Text="" FontFamily="Candara Light" FontWeight="Bold" FontSize="15" 
+                   HorizontalAlignment="Center" TextWrapping="Wrap"
+                   MaxHeight="200" Margin="42,0.6,41.2,-0.6" Width="384"/>
+
+        <Button x:Name="mButton" Content="Start Proxy" HorizontalAlignment="Center" 
+                Style="{StaticResource AccentButtonStyle}" Width="{Binding ActualWidth, ElementName=Head}" 
+                Height="60" Margin="24,10.4,24,-10.4" Click="Button_Click" 
+                FontSize="30" FontFamily="OCR A Extended" />
+
+        <Button x:Name="mInject" Content="Injector Mode" HorizontalAlignment="Center" 
+                Style="{StaticResource AccentButtonStyle}" Width="{Binding ActualWidth, ElementName=Head}" 
+                Height="60" Margin="24,-5,24,-1.4" Click="Injector_Click" 
+                FontSize="30" FontFamily="OCR A Extended" />
+
+        <StackPanel Orientation="Vertical" Margin="24,10,24,-1.4">
+            <TextBlock Text="How To Use?&#x0a;1.Click on start proxy button, 
+It will start EBOX Proxy!&#x0a;2.Go to your EBOX iDesign/Coding page and save your problem 
+(Using CTRL S), After doing this, the tool will automatically pickup the code and get it 
+pasted in your clipboard!&#x0a;3.Happy Coding! :D&#x0a;&#x0a;Additionally to paste your own 
+code, You have to click on *Injector Mode* button, With that paste your code into the box 
+asking for code, After that go to ebox and Save the given problem once again to get your 
+custom code PASTED!" FontFamily="Calibri Light" 
+                       FontWeight="Bold" TextWrapping="Wrap" FontSize="20"/>
+        </StackPanel>
+        
+    </ui:SimpleStackPanel>
+</Window>
