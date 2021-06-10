@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -88,21 +89,33 @@ namespace Ares
 
         private async Task OnRequest(object sender, SessionEventArgs e)
         {
-            if (!isInjectActive)
-            {
-                Log("Starting");
-                if (e.HttpClient.Request.RequestUri.AbsoluteUri.Contains("fileManager/save"))
-                {
-                    Log("A");
-                    string bS = await e.GetRequestBodyAsString();
-                    dynamic result = JsonValue.Parse(bS);
-                    if (bS.Contains("content")) {
-                        Log("Save:");
-                        Log(result.content);
+            if (e.HttpClient.Request.RequestUri.AbsoluteUri.Contains("fileManager/save")){
+                string bS = await e.GetRequestBodyAsString();
+                dynamic result = JsonConvert.DeserializeObject(bS);
+                if (!isInjectActive){
+                    String decoded = result.content;
+                    Log(decoded);
+                    Log("Found Save With Name " + result.path + " Content Length " + decoded.Length + " Successfully Copied To Your Clipboard!");
+                    clipboardSetText(decoded);
+                }
+                else{
+                    if (injectionCode == "" || injectionCode.Length == 0){
+                        Log("Injection Code Empty? Wtf");
+                        return;
                     }
+                    result.content = injectionCode;
+                    var ob = JsonConvert.SerializeObject(result);
+                    e.SetRequestBodyString(ob);
+                    Log("Found Save With Name " + result.path + " Content Length " + ob.Length + " Successfully Injected The Code!");
+
+                    this.Dispatcher.Invoke(() =>
+                    {
+                        mInject.Content = "Start Injector";
+                        isInjectActive = false;
+                        mInject.Background = new SolidColorBrush(Colors.OrangeRed);
+                    });
                 }
             }
-
 /*
             if (e.HttpClient.Request.RequestUri.AbsoluteUri.Contains("fileManager/modify?path="))
             {
