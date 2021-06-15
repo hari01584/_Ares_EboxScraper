@@ -116,18 +116,21 @@ namespace Ares
                     });
                 }
             }
-/*
+
             if (e.HttpClient.Request.RequestUri.AbsoluteUri.Contains("fileManager/modify?path="))
             {
                 String fname = FindTextBetween(e.HttpClient.Request.RequestUri.AbsoluteUri, "fileManager/modify?path=", "&");
                 string bodyString = await e.GetRequestBodyAsString();
                 if (bodyString.Contains("content"))
                 {
-                    if (isInjectActive){
-                        if (injectionCode == "" || injectionCode.Length == 0){
+                    if (isInjectActive)
+                    {
+                        if (injectionCode == "" || injectionCode.Length == 0)
+                        {
                             Log("Injection Code Empty? Wtf");
                         }
-                        else{
+                        else
+                        {
                             string encoded = HttpUtility.UrlEncode(injectionCode);
                             string body = "content=" + encoded;
                             e.SetRequestBodyString(body);
@@ -140,7 +143,8 @@ namespace Ares
                             mInject.Background = new SolidColorBrush(Colors.OrangeRed);
                         });
                     }
-                    else{
+                    else
+                    {
                         string content = bodyString.Substring(bodyString.LastIndexOf("content=") + 8);
                         string decoded = HttpUtility.UrlDecode(content);
 
@@ -150,9 +154,9 @@ namespace Ares
                     }
                 }
                 else
-                    Log("Found Save With Name "+fname+" But Failed To Parse For Data :((");
+                    Log("Found Save With Name " + fname + " But Failed To Parse For Data :((");
 
-            }*/
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
